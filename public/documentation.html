@@ -21,6 +21,140 @@
         ● Allow users to add a movie to their list of favorites.
         ● Allow users to remove a movie from their list of favorites.
         ● Allow existing users to deregister.
+    
     </p>
+
+    <table class="content-table" style="width: 1000px;">
+        <thead>
+          <tr>
+            <th style="width: 120px;">Business logic</th>
+            <th>URL</th>
+            <th>HTTP Method</th>
+            <th style="width: 100px;">Request Body Data Format</th>
+            <th>Response Body Data Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Get a list of all movies</td>
+            <td>/movies</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about all the movies</td>
+          </tr>
+          <tr>
+            <td>Get details about a single movie by title </td>
+            <td>/movies/[title]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about a single movie, containing a 
+              title, description, genre property, director property and image. 
+              Example: <p style="color:blue">
+                  {
+                    title : 'Iron Man',
+                    description : 'After being held captive in an Afghan cave, billionaire engineer \
+                    Tony Stark creates a unique weaponized suit of armor to fight evil.',
+                    genre : 'Action',
+                    director : 'Jon Favreau',
+                    image : 'iron_man.png'
+                }</p>
+              </td>
+          </tr>
+          <tr>
+            <td>Get data about a genre of a movie by a title</td>
+            <td>/genres/[name]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about a movie genre.
+              Example: <p style="color:blue">
+                {
+                  name : 'Comedy',
+                  description : 'A comedy film is a genre of film in which the main emphasis
+                  is on humour. These films are designed to make the audience laugh through
+                  amusement and most often work by exaggerating characteristics for humorous
+                  effect.'
+                }
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>Get a data about director by name</td>
+            <td>/directors/[name]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about a director.
+              Example: <p style="color:blue">
+                {
+                  name : 'Greg Mottola',
+                  born : 'July 11, 1964'
+                }
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>Add new user</td>
+            <td>/users</td>
+            <td>POST</td>
+            <td>A JSON object holding data about the user to add, structured like: 
+              <p style="color: blue">
+                {
+                  username : 'janedoe123',
+                  password : 'password123',
+                  email : 'example@gmail.com',
+                  date_of_birth : "January 1, 1990"
+                }
+              </p>
+            </td>
+            <td>A JSON object holding data about the user that was added, including an ID:
+              <p style="color:blue">
+                {
+                  id : 1,
+                  username : 'janedoe123',
+                  password : 'password123',
+                  email : 'example@gmail.com',
+                  date_of_birth : "January 1, 1990"
+                }
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>Update a user info</td>
+            <td>/users/[username]</td>
+            <td>PUT</td>
+            <td>A JSON object holding data about the user to add, structured like: 
+              <p style="color: blue">
+                {
+                  username : 'janedoe123',
+                  password : 'password123',
+                  email : 'example@gmail.com',
+                  date_of_birth : "January 1, 1990"
+                }
+              </p>
+            </td>
+            <td>A text message indicating the user's information was updated</td>
+          </tr>
+          <tr>
+            <td>Allow users to add favorite movies</td>
+            <td>/users/[username]/favorites</td>
+            <td>POST</td>
+            <td>None</td>
+            <td>A message indicating the movie was added to the user's list of favorites</td>
+          </tr>
+          <tr>
+            <td>Allow user to remove a movie from their favorite list of movies</td>
+            <td>/users/[username]/favorites</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A message indicating the movie was removed from the user's list of favorites</td>
+          </tr>
+          <tr>
+            <td>Allow existing users to deregister</td>
+            <td>/users/[username]</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A message indicating the user's account was deleted</td>
+          </tr>
+        </tbody>
+      </table>
 </body>
 </html>
