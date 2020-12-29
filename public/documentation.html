@@ -1,160 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentstion</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Cinesider</title>
+  <meta name="description" content="An application for movie and actor lovers">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <header>
-        <h1> Special Movies API </h1>
-    </header>
-    <p>
-        Essential Features:
-        ● Return a list of ALL movies to the user.
-        ● Return data (description, genre, director, image URL, whether it’s featured or not) about
-        a single movie by title to the user.
-        ● Return data about a genre (description) by name/title (e.g., “Thriller”).
-        ● Return data about a director (bio, birth year, death year) by name.
-        ● Allow new users to register.
-        ● Allow users to update their user info (username, password, email, date of birth).
-        ● Allow users to add a movie to their list of favorites.
-        ● Allow users to remove a movie from their list of favorites.
-        ● Allow existing users to deregister.
-    
-    </p>
-
-    <table class="content-table" style="width: 1000px;">
+<header>
+    <h1 class="h1">Cinesider</h1>
+    <h2 class="h2" >The Movie App</h2>
+  </header>
+  <table>
+    <tr>
+      <th style="font-weight: bold;">Business logic</th>
+      <th style="font-weight: bold;">URL</th>
+      <th style="font-weight: bold;">HTTP Method</th>
+      <th style="font-weight: bold;">Request Body Data Format</th>
+      <th style="font-weight: bold;">Response Body Data Format</th>
+    </tr>
+    <table>
+      <caption> <h2> MOVIE REQUESTS </h2></caption>
+      <thead>
+        <tr>
+          <th>BUSINESS LOGIC</th>
+          <th>URL</th>
+          <th>HTTP METHOD</th>
+          <th>REQUEST BODY DATA FORMAT</th>
+          <th>RESPONSE BODY DATA FORMAT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Get the list of all movies</td>
+          <td>/movies</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>JSON object holding data about all movies</td>
+        </tr>
+        <tr>
+          <td>Get the data about a single movie by title</td>
+          <td>/movies/[Title]</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>JSON object holding data about single movie containing a title,description,genre,director,image URL.Example:
+            <br>
+            {<br>
+            _id : ObjectId("5d8262852e9422a0c643b640),<br>
+            Title : "Killers",<br>
+            Description: :"A vacationing woman meets her ideal man, leading to a swift marriage. Back at home, however, their idyllic life is upset when they discover their neighbors could be assassins who have been contracted to kill the couple..",<br>
+            Genre: {<br>
+              Name:"Thriller",<br>
+              Description: "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience."<br>
+              } ,<br>
+            Director: <br>
+              { <br>
+              Name: "Robert Luketic" ,<br>
+              Bio: "Robert Luketic was born on November 1, 1973 in Sydney, New South Wales, Australia. He is a director and writer, known for The Ugly Truth (2009), Killers (2010) and 21 (2008).",<br>
+              BirthYear: "1973-11-01<br>
+              },<br>
+            ImagePath: "killers.png" ,<br>
+            Featured: true <br>
+          }
+          </td>
+        </tr>
+        <tr>
+          <td>Get the genre of a single movie by title</td>
+          <td>/movies/genres/[Title]</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>A text message with the genre of the requested movie.Example: <br>
+            Movie with the title: "About a Boy" is a Comedy.<br>
+          </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <table>
+      <caption> <h2> USER REQUESTS </h2></caption>
         <thead>
           <tr>
-            <th style="width: 120px;">Business logic</th>
+            <th>BUSINESS LOGIC</th>
             <th>URL</th>
-            <th>HTTP Method</th>
-            <th style="width: 100px;">Request Body Data Format</th>
-            <th>Response Body Data Format</th>
+            <th>HTTP METHOD</th>
+            <th>REQUEST BODY DATA FORMAT</th>
+            <th>RESPONSE BODY DATA FORMAT</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Get a list of all movies</td>
-            <td>/movies</td>
-            <td>GET</td>
-            <td>None</td>
-            <td>A JSON object holding data about all the movies</td>
-          </tr>
-          <tr>
-            <td>Get details about a single movie by title </td>
-            <td>/movies/[title]</td>
-            <td>GET</td>
-            <td>None</td>
-            <td>A JSON object holding data about a single movie, containing a 
-              title, description, genre property, director property and image. 
-              Example: <p style="color:blue">
-                  {
-                    title : 'Iron Man',
-                    description : 'After being held captive in an Afghan cave, billionaire engineer \
-                    Tony Stark creates a unique weaponized suit of armor to fight evil.',
-                    genre : 'Action',
-                    director : 'Jon Favreau',
-                    image : 'iron_man.png'
-                }</p>
-              </td>
-          </tr>
-          <tr>
-            <td>Get data about a genre of a movie by a title</td>
-            <td>/genres/[name]</td>
-            <td>GET</td>
-            <td>None</td>
-            <td>A JSON object holding data about a movie genre.
-              Example: <p style="color:blue">
-                {
-                  name : 'Comedy',
-                  description : 'A comedy film is a genre of film in which the main emphasis
-                  is on humour. These films are designed to make the audience laugh through
-                  amusement and most often work by exaggerating characteristics for humorous
-                  effect.'
-                }
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>Get a data about director by name</td>
-            <td>/directors/[name]</td>
-            <td>GET</td>
-            <td>None</td>
-            <td>A JSON object holding data about a director.
-              Example: <p style="color:blue">
-                {
-                  name : 'Greg Mottola',
-                  born : 'July 11, 1964'
-                }
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>Add new user</td>
-            <td>/users</td>
+            <td>Create new user</td>
+            <td>/users/</td>
             <td>POST</td>
-            <td>A JSON object holding data about the user to add, structured like: 
-              <p style="color: blue">
-                {
-                  username : 'janedoe123',
-                  password : 'password123',
-                  email : 'example@gmail.com',
-                  date_of_birth : "January 1, 1990"
-                }
-              </p>
+            <td>A JSON object holding data about user to add with following structure:<br>
+              {<br>
+              Username:"Whoust",<br>
+              Name: "Jeana Weir",<br>
+              Password:"xah7ooNgohd",<br>
+              Email: "jeana.weir@jourrapide.com",<br>
+              Birth_date:"1989-10-02",<br>
+              Favorit_movie: []<br>
+              }<br>
             </td>
-            <td>A JSON object holding data about the user that was added, including an ID:
-              <p style="color:blue">
-                {
-                  id : 1,
-                  username : 'janedoe123',
-                  password : 'password123',
-                  email : 'example@gmail.com',
-                  date_of_birth : "January 1, 1990"
-                }
-              </p>
+            <td>JSON object holding data about user account that was just created. Example:<br>
+              {<br>
+                Username:"Whoust",<br>
+                Name: "Jeana Weir",<br>
+                Password:"xah7ooNgohd",<br>
+                Email: "jeana.weir@jourrapide.com",<br>
+                Birth_date:"1989-10-02",<br>
+                Favorit_movie: []<br>
+              }<br>
             </td>
           </tr>
           <tr>
-            <td>Update a user info</td>
-            <td>/users/[username]</td>
+            <td>Get/user profile</td>
+            <td>/users/[Username]</td>
+            <td>GET</td>
+            <td>JSON object holding data about user account with the following structure:<br>
+              {<br>
+                Username:"Whoust",<br>
+                Name: "Jeana Weir",<br>
+                Password:"xah7ooNgohd",<br>
+                Email: "jeana.weir@jourrapide.com",<br>
+                Birth_date:"1989-10-02",<br>
+                Favorit_movie: []<br>
+              }<br>
+            </td>
+          </tr>
+          <tr>
+            <td>Update user information (username,,name, password, email, date of birth)</td>
+            <td>/users/[Username]</td>
             <td>PUT</td>
-            <td>A JSON object holding data about the user to add, structured like: 
-              <p style="color: blue">
-                {
-                  username : 'janedoe123',
-                  password : 'password123',
-                  email : 'example@gmail.com',
-                  date_of_birth : "January 1, 1990"
-                }
-              </p>
+            <td>A JSON object holding data about user to be updated with following structure:<br>
+              {<br>
+                Username:"Whoust",<br>
+                Name: "Jeana Weir",<br>
+                Password:"xah7ooNgohd",<br>
+                Email: "jeana.weir@gmail.com",<br>
+                Birth_date:"1989-10-02",<br>
+                Favorit_movie: []<br>
+              }
             </td>
-            <td>A text message indicating the user's information was updated</td>
+            <td>A text message indicating whether the user info was successfully updated
+            </td>
           </tr>
           <tr>
-            <td>Allow users to add favorite movies</td>
-            <td>/users/[username]/favorites</td>
+            <td>Add a movie to user's list of favorit_movies</td>
+            <td>/users/[Username]/Movies/[MovieID]</td>
             <td>POST</td>
-            <td>None</td>
-            <td>A message indicating the movie was added to the user's list of favorites</td>
+            <td>A JSON object holding data about movie ID to be added to user's list of favourites.Example:<br>
+              {<br>
+              MovieID:"_id" : ObjectId("5d8262852e9422a0c643b63d"<br>
+              }<br>
+            </td>
+            <td>JSON object holding data about updated user profile including the updated list of favorite movies.Example:<br>
+              {<br>
+                Username:"dennyboy",<br>
+                Name: "Dennis Hawkins",<br>
+                Password:"jdrunt",<br>
+                Email: "dny.haw@gmail.com",<br>
+                Birth_date:"1992-07-11",<br>
+                Favorit_movie: [ObjectId("5d8262852e9422a0c643b63d"), ObjectId("5d8262852e9422a0c643b63b")]<br>
+              }<br>
+            </td>
           </tr>
           <tr>
-            <td>Allow user to remove a movie from their favorite list of movies</td>
-            <td>/users/[username]/favorites</td>
+            <td>Remove a movie from user's list of favorit_movies</td>
+            <td>/users/[Username]/Movies/[MovieID]</td>
             <td>DELETE</td>
-            <td>None</td>
-            <td>A message indicating the movie was removed from the user's list of favorites</td>
+            <td>A JSON object holding data about MovieID to be removed from user's list of favourit_movies.Example:<br>
+              {<br>
+              MovieID:"_id" : ObjectId("5d8262852e9422a0c643b63b")<br>
+              }<br>
+            </td>
+            <td>JSON object holding data about updated user profile including the updated list of favorite movies.Example:<br>
+              {<br>
+                Username:"dennyboy",<br>
+                Name: "Dennis Hawkins",<br>
+                Password:"jdrunt",<br>
+                Email: "dny.haw@gmail.com",<br>
+                Birth_date:"1992-07-11",<br>
+                Favorit_movie: [ObjectId("5d8262852e9422a0c643b63d"]<br>
+              }<br>
+            </td>
           </tr>
           <tr>
-            <td>Allow existing users to deregister</td>
-            <td>/users/[username]</td>
+            <td>Delete user profile</td>
+            <td>/users/[Username]/</td>
             <td>DELETE</td>
-            <td>None</td>
-            <td>A message indicating the user's account was deleted</td>
+            <td>A JSON object holding data about user to be deregistered with following structure:<br>
+              {<br>
+                Username:"boares2",<br>
+                Name: "Henry Wood",<br>
+                Password:"hywood",<br>
+                Email: "henrywood@gmail.com",<br>
+                Birth_date:"1970-02-26",<br>
+                Favorit_movie: []<br>
+              }<br>
+            </td>
+            <td>A text message indicating that the account with specific username was successfully deleted."
+            </td>
           </tr>
         </tbody>
       </table>
+
 </body>
 </html>
