@@ -16,26 +16,13 @@ const app = express();
 app.use(bodyParser.json());
 
 
-app.get('/', (req, res) => {
-    res.send('Welcome to my special movies selection !');
-});
-
 // use express.static to serve “documentation.html” file 
 app.use(express.static('public'));
-
-app.get('/secreturl', (req, res) => {
-    res.send('This is a secret url with super top-secret content.');
-  });
 
 //using Morgan middleware to log all requests
 app.use(morgan('common'));
 
 
-
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-  });
 
 
 // movies API requests......................................
