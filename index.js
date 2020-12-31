@@ -4,6 +4,8 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
+
+
 mongoose.connect('mongodb://localhost:27017/movie_api', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const express = require('express'),
@@ -15,6 +17,11 @@ const app = express();
 
 app.use(bodyParser.json());
 
+//importing auth.js
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
 
 // use express.static to serve “documentation.html” file 
 app.use(express.static('public'));
@@ -30,17 +37,16 @@ app.use(morgan('common'));
 // Movies
 
 // Get movies and details
-app.get('/movies', function(req, res) {
-
-	Movies.find()
-	.then(function(movies) {
-	  res.status(201).json(movies)
-	})
-	.catch(function(err) {
-	  console.error(err);
-	  res.status(500).send("Error: " + err);
-	});
-  });
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});
   // Get movie by title
   app.get('/movies/:Title', function(req, res) {
 	Movies.findOne({ Title : req.params.Title })
