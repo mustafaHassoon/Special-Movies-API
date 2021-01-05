@@ -321,7 +321,9 @@ app.delete('/users/:Username', function(req, res) {
     res.status(500).send("Error: " + err);
   });
 });
-
-app.listen(8080, () =>{
-    console.log('My app is listening on port 8080.');
+// listen for requests
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
 });
+
