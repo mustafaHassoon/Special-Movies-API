@@ -51,6 +51,11 @@ app.use(cors({
 
 // movies API requests......................................
 
+// start
+app.get('/', (req, res) => {
+  res.send('<h1>' + '<b>Welcome to my special collection of movies !<b>' + '</h1>')
+})
+
 // Movies
 
 // Get movies and details
