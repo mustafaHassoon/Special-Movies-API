@@ -28,6 +28,9 @@ app.use(express.static('public'));
 
 //using Morgan middleware to log all requests
 app.use(morgan('common'));
+
+const { check, validationResult } = require('express-validator');
+
 //..........................................................
 //implementing cors
 const cors = require('cors');
