@@ -6,7 +6,11 @@ const Users = Models.User;
 
 
 
-mongoose.connect('mongodb://localhost:27017/movie_api', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/movie_api', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb+srv://mustafaHassoon:Mm07706056635@movieapi.yigk8.mongodb.net/movieAPIDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 const express = require('express'),
  morgan = require('morgan');
